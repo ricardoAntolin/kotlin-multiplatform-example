@@ -1,0 +1,9 @@
+include ':android-app'
+include ':presentation'
+include ':domain'
+include ':data'
+include ':android-realm-provider'
+include ':network-provider'
+include ':android-firebase-provider'
+
+enableFeaturePreview('GRADLE_METADATA')
