@@ -22,6 +22,12 @@ kotlin {
             }
         }
 
+        commonTest {
+            dependencies {
+                unit_test_multiplatform_common(it)
+            }
+        }
+
         androidMain {
             dependencies {
                 network_android_dependencies(it)

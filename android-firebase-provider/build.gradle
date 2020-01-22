@@ -32,7 +32,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    firebase_provider_dependencies.each {
-        add(it.configuration, it.dependency, it.options)
-    }
+    firebase_provider_dependencies(it)
 }

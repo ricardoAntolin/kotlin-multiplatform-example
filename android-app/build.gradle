@@ -58,10 +58,8 @@ android {
 }
 
 dependencies {
-    android_ui_dependencies.each {
-        add(it.configuration, it.dependency, it.options)
-    }
+    android_ui_dependencies(it)
 }
 
-apply plugin: 'com.google.gms.google-services'
-googleServices { disableVersionCheck = true }
+//apply plugin: 'com.google.gms.google-services'
+//googleServices { disableVersionCheck = true }

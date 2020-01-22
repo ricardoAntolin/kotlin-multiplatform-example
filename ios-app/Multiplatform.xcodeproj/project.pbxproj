@@ -12,24 +12,9 @@
 		13167FF42264B51C00E62544 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13167FF22264B51C00E62544 /* Main.storyboard */; };
 		13167FF62264B51D00E62544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13167FF52264B51D00E62544 /* Assets.xcassets */; };
 		13167FF92264B51D00E62544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13167FF72264B51D00E62544 /* LaunchScreen.storyboard */; };
-		131680062264B85A00E62544 /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 131680012264B72900E62544 /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13504AFD22684C2200FA458D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 13504AFC22684C2200FA458D /* libsqlite3.tbd */; };
 		137C058322A121D2007ACF6D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C058222A121D2007ACF6D /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		131680072264B85A00E62544 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				131680062264B85A00E62544 /* SharedCode.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		13167FEB2264B51C00E62544 /* Multiplatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Multiplatform.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +92,6 @@
 				13167FE72264B51C00E62544 /* Sources */,
 				13167FE82264B51C00E62544 /* Frameworks */,
 				13167FE92264B51C00E62544 /* Resources */,
-				131680072264B85A00E62544 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -180,7 +164,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/../../SharedCode/build/xcode-frameworks\"\n./gradlew :SharedCode:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew -p \"$SRCROOT\" packForXCode \\\n-Pconfiguration.build.dir=\"$CONFIGURATION_BUILD_DIR\"          \\\n-Pkotlin.build.type=\"$KOTLIN_BUILD_TYPE\"                      \\\n-Pdevice=\"$KOTLIN_DEVICE\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -340,7 +324,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../SharedCode/build/xcode-frameworks";
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Multiplatform/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -358,7 +342,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../SharedCode/build/xcode-frameworks";
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Multiplatform/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

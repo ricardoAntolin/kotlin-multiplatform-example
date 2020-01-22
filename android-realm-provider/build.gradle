@@ -34,7 +34,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    realm_provider_dependencies.each {
-        add(it.configuration, it.dependency, it.options)
-    }
+    realm_provider_dependencies(it)
 }
