@@ -1,0 +1,300 @@
+static def addRepos(RepositoryHandler handler) {
+    handler.jcenter()
+    handler.mavenCentral()
+    handler.google()
+    handler.maven { url "https://kotlin.bintray.com/kotlinx" }
+}
+
+ext.addRepos = this.&addRepos
+
+def build_versions = [:]
+build_versions.min_sdk = 21
+build_versions.target_sdk = 29
+build_versions.build_tools = "29.0.2"
+ext.build_versions = build_versions
+
+def versions = [:]
+
+/** Androidx **/
+def androidx_versions = [:]
+androidx_versions.ui = "0.1.0-dev03"
+androidx_versions.stable = "1.1.0"
+androidx_versions.arch = "2.1.0"
+androidx_versions.arch_rc3 = "2.2.0-rc03"
+versions.androidx = androidx_versions
+
+/** Google **/
+versions.dagger = "2.25.4"
+versions.google_services_plugin = "4.3.3"
+
+/** Kotlin **/
+versions.kotlin = "1.3.60"
+versions.coroutines_version = "1.3.3"
+versions.kotlinx_serialization = "0.14.0"
+
+/** Gradle **/
+versions.android_gradle_plugin = "4.1.0-alpha05"
+
+//Unit Testing
+versions.robolectric = "4.0.2"
+versions.junit = "4.12"
+versions.kluent = "1.44"
+versions.mockito = "2.23.4"
+versions.android_test_core = "1.0.0"
+versions.mockito2 = "2.2.0"
+
+//Acceptance Testing
+versions.runner = "1.1.1-alpha01"
+versions.espresso = "3.1.1-alpha01"
+versions.uiautomator = "2.2.0"
+
+//Firebase
+versions.firebase_analytics = "17.2.1"
+versions.firebase_firestore = "21.3.1"
+versions.firebase_crashlytics = "2.10.1"
+versions.firebase_auth = "19.2.0"
+versions.firebase_messaging = "20.1.0"
+versions.firebase_inappmessaging = "19.0.2"
+versions.firebase_config = "19.1.0"
+versions.firebase_inappmessaging = "19.0.2"
+
+//Third party libraries
+versions.realm = "6.0.2"
+versions.timber = "4.7.1"
+versions.ktor = "1.3.0"
+versions.mockk = "1.9.3"
+
+def kotlin = [:]
+kotlin.native_stdlib = "org.jetbrains.kotlin:kotlin-stdlib"
+kotlin.native_stdlib_common = "org.jetbrains.kotlin:kotlin-stdlib-common"
+kotlin.native_test_common = "org.jetbrains.kotlin:kotlin-test-common"
+kotlin.native_test_annotations_common = "org.jetbrains.kotlin:kotlin-test-annotations-common"
+kotlin.android_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$versions.kotlin"
+kotlin.serialization = "org.jetbrains.kotlin:kotlin-serialization:$versions.kotlin"
+kotlin.serialization_common = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$versions.kotlinx_serialization"
+kotlin.serialization_native = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$versions.kotlinx_serialization"
+ext.kotlin = kotlin
+
+def ui = [:]
+ui.runtime = "androidx.compose:compose-runtime:$versions.androidx.ui"
+ui.core = "androidx.ui:ui-core:$versions.androidx.ui"
+ui.layout = "androidx.ui:ui-layout:$versions.androidx.ui"
+ui.framework = "androidx.ui:ui-framework:$versions.androidx.ui"
+ui.material = "androidx.ui:ui-material:$versions.androidx.ui"
+ui.foundation = "androidx.ui:ui-foundation:$versions.androidx.ui"
+ui.text = "androidx.ui:ui-text:$versions.androidx.ui"
+ui.tooling = "androidx.ui:ui-tooling:$versions.androidx.ui"
+ext.ui = ui
+
+def androidx = [:]
+androidx.appcompat = "androidx.appcompat:appcompat:$versions.androidx.stable"
+androidx.ktx = "androidx.core:core-ktx:$versions.androidx.stable"
+androidx.annotations = "androidx.annotation:annotation:$versions.androidx.stable"
+androidx.runtime = "androidx.lifecycle:lifecycle-extensions:$versions.androidx.arch"
+androidx.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.androidx.arch"
+androidx.runtime_extensions = "androidx.lifecycle:lifecycle-runtime-ktx:$versions.androidx.arch_rc3"
+androidx.livedata_extensions = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.androidx.arch"
+ext.androidx = androidx
+
+def google_services = [:]
+google_services.plugin = "com.google.gms:google-services:$versions.google_services_plugin"
+ext.google_services = google_services
+
+def coroutines = [:]
+coroutines.core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines_version"
+coroutines.core_native = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$versions.coroutines_version"
+coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines_version"
+coroutines.test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines_version"
+ext.coroutines = coroutines
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+ext.dagger = dagger
+
+def test = [:]
+test.junit = "junit:junit:$versions.junit"
+test.arch = "androidx.arch.core:core-testing:$versions.androidx.arch"
+test.ui_junit = "androidx.test.ext:junit:$versions.android_test_core"
+test.espresso_core = "androidx.test.espresso:espresso-core:$versions.espresso"
+test.espresso_contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
+test.espresso_intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
+test.runner = "androidx.test:runner:$versions.runner"
+test.core = "androidx.test:core:$versions.android_test_core"
+test.orchestator = "androidx.test:orchestrator:$versions.android_test_core"
+test.rules = "androidx.test:rules:$versions.runner"
+test.uiautomator = "androidx.test.uiautomator:uiautomator:$versions.uiautomator"
+test.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines_version"
+test.mockito2 = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito2"
+ext.test = test
+
+def firebase = [:]
+firebase.messaging = "com.google.firebase:firebase-messaging:$versions.firebase_messaging"
+firebase.analytics = "com.google.firebase:firebase-analytics:$versions.firebase_analytics"
+firebase.firestore = "com.google.firebase:firebase-firestore-ktx:$versions.firebase_firestore"
+firebase.crashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.firebase_crashlytics"
+firebase.auth = "com.google.firebase:firebase-auth:$versions.firebase_auth"
+firebase.config = "com.google.firebase:firebase-config-ktx:$versions.firebase_config"
+firebase.inappmessaging = "com.google.firebase:firebase-inappmessaging-ktx:$versions.firebase_inappmessaging"
+ext.firebase = firebase
+
+def ktor = [:]
+ktor.android = "io.ktor:ktor-client-android:$versions.ktor"
+ktor.ios = "io.ktor:ktor-client-ios:$versions.ktor"
+ext.ktor = ktor
+
+ext.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+ext.realm_plugin = "io.realm:realm-gradle-plugin:$versions.realm"
+ext.mockk = "io.mockk:mockk:$versions.mockk"
+ext.google_services_plugin = google_services.plugin
+ext.kotlin_plugin = kotlin.plugin
+ext.kotlin_extensions = kotlin.extensions
+ext.kotlin_serialization = kotlin.serialization
+
+def modules = [:]
+modules.presentation = ':presentation'
+modules.domain = ':domain'
+modules.data = ':data'
+modules.realm_provider = ':android-realm-provider'
+modules.network_provider = ':network-provider'
+modules.firebase_provider = ':android-firebase-provider'
+ext.modules = modules
+
+/** ANDROID PROVIDERS DEPENDENCIES **/
+
+def unit_test_common(handler) {
+    handler.testImplementation(test.junit)
+    handler.testImplementation(test.mockito2)
+    handler.testImplementation(kotlin.test)
+}
+
+ext.unit_test_common = this.&unit_test_common
+
+def unit_test_multiplatform_common(handler) {
+    handler.implementation(kotlin.native_test_common)
+    handler.implementation(kotlin.native_test_annotations_common)
+    handler.implementation(mockk)
+}
+
+ext.unit_test_multiplatform_common = this.&unit_test_multiplatform_common
+
+def common_android(handler) {
+    handler.implementation(coroutines.core)
+    handler.implementation(coroutines.android)
+    handler.implementation(kotlin.android_stdlib)
+}
+
+ext.common_android = this.&common_android
+
+def realm_provider_dependencies(handler) {
+    handler.implementation(project(modules.data))
+    common_android(handler)
+    unit_test_common(handler)
+}
+
+ext.realm_provider_dependencies = this.&realm_provider_dependencies
+
+def firebase_provider_dependencies(handler) {
+    handler.implementation(firebase.analytics)
+    handler.implementation(firebase.crashlytics)
+    handler.implementation(project(modules.data))
+    common_android(handler)
+    unit_test_common(handler)
+}
+
+ext.firebase_provider_dependencies = this.&firebase_provider_dependencies
+
+/** NETWORK DEPENDENCIES **/
+
+def network_common_dependencies(handler) {
+    handler.implementation(project(modules.domain))
+    handler.implementation(kotlin.native_stdlib_common)
+}
+
+ext.network_common_dependencies = this.&network_common_dependencies
+
+def network_android_dependencies(handler) {
+    handler.implementation(kotlin.native_stdlib)
+}
+
+ext.network_android_dependencies = this.&network_android_dependencies
+
+def network_ios_dependencies(handler) {}
+
+ext.network_ios_dependencies = this.&network_ios_dependencies
+
+/** DATA DEPENDENCIES **/
+
+def data_common_dependencies(handler) {
+    handler.implementation(project(modules.domain))
+    handler.implementation(kotlin.native_stdlib_common)
+}
+
+ext.data_common_dependencies = this.&data_common_dependencies
+
+def data_android_dependencies(handler) {
+    handler.implementation(kotlin.native_stdlib)
+}
+
+ext.data_android_dependencies = this.&data_android_dependencies
+
+def data_ios_dependencies(handler) {}
+
+ext.data_ios_dependencies = this.&data_ios_dependencies
+
+/** DOMAIN DEPENDENCIES **/
+
+def domain_common_dependencies(handler) {
+    handler.implementation(kotlin.native_stdlib_common)
+}
+
+ext.domain_common_dependencies = this.&domain_common_dependencies
+
+def domain_android_dependencies(handler) {
+    handler.implementation(kotlin.native_stdlib)
+}
+
+ext.domain_android_dependencies = this.&domain_android_dependencies
+
+def domain_ios_dependencies(handler) {}
+
+ext.domain_ios_dependencies = this.&domain_ios_dependencies
+
+/** PRESENTATION DEPENDENCIES **/
+
+def presentation_common_dependencies(handler) {
+    handler.implementation(project(modules.domain))
+    handler.implementation(kotlin.native_stdlib_common)
+}
+
+ext.presentation_common_dependencies = this.&presentation_common_dependencies
+
+def presentation_android_dependencies(handler) {
+    handler.implementation(kotlin.native_stdlib)
+}
+
+ext.presentation_android_dependencies = this.&presentation_android_dependencies
+
+def presentation_ios_dependencies(handler) {}
+
+ext.presentation_ios_dependencies = this.&presentation_ios_dependencies
+
+/** ANDROID UI DEPENDENCIES **/
+
+def android_ui_dependencies(handler) {
+    handler.implementation(project(modules.presentation))
+    handler.implementation(project(modules.domain))
+    handler.implementation(project(modules.data))
+    handler.implementation(project(modules.realm_provider))
+    handler.implementation(project(modules.firebase_provider))
+    handler.implementation(project(modules.network_provider))
+    ui.values().each { handler.implementation(it) }
+    androidx.values().each { handler.implementation(it) }
+    common_android(handler)
+    unit_test_common(handler)
+}
+
+ext.android_ui_dependencies = this.&android_ui_dependencies
